@@ -1,3 +1,13 @@
+
+
+
+import { defineConfig } from "sanity";
+import { deskTool } from "sanity/desk";
+import { schemaTypes } from "./schema";
+import BrandLogo from "./src/components/sanity-studio/BrandLogo";
+import EnhancedNavbar from "./src/components/sanity-studio/EnhancedNavbar";
+import EnhancedToolMenu from "./src/components/sanity-studio/EnhancedToolMenu";
+
 // Different environments use different variables
 const projectId =
   import.meta.env.PUBLIC_SANITY_STUDIO_PROJECT_ID! ||
@@ -17,18 +27,20 @@ if (!projectId || !dataset) {
   );
 }
 
-import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
-import { visionTool } from "@sanity/vision";
-import { schemaTypes } from "./schema";
-
 export default defineConfig({
-  name: "project-name",
-  title: "Project Name",
+  name: "Whatmore",
+  title: "Whatmore",
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool()],
   schema: {
     types: schemaTypes,
+  },
+  studio: {
+    components: {
+      logo: BrandLogo,
+      navbar: EnhancedNavbar,
+      toolMenu: EnhancedToolMenu,
+    }
   },
 });
